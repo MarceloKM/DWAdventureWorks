@@ -1,8 +1,8 @@
 version: 2
 
 sources:
-  - name: erpnorthwind20211010
-    description: tabelas nortwind
+  - name: erpadventureworks
+    description: tabelas Adventure Works
     tables:
       - name: public_orders
         description: >
