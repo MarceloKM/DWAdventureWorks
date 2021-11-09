@@ -1,0 +1,83 @@
+version: 2
+
+sources: 
+    - name: erpadventure
+      tables:
+        - name: person_address
+          description: Tabela com informações de endereços (DIM)
+          columns:
+            - name: addressid
+              description: id do endereço
+              tests:
+                - unique
+                - not_null
+        - name: person_countryregion
+          description: Tabela com as informações das regiões (DIM)
+          columns:
+            - name: countryregioncode
+              description: código da região
+              tests:
+                - unique
+                - not_null
+        - name: person_stateprovince
+          description: Tabela de informações das províncias (DIM)
+          columns:
+            - name: stateprovinceid
+              description: id da província/estado/distrito
+              tests:
+                - unique
+                - not_null
+        - name: production_product
+          description: Tabela de informações dos produtos (DIM)
+          columns:
+            - name: productid
+              description: id do produto
+              tests:
+                - unique
+                - not_null
+        - name: sales_creditcard
+          description: Tabela de informações dos cartões de compra (DIM)
+          columns:
+            - name: creditcardid
+              description: id do cartão de crédito
+              tests:
+                - unique
+                - not_null
+        - name: sales_customer
+          description: Tabela de informações dos clientes (DIM)
+          columns:
+            - name: customerid
+              description: id do cliente
+              tests:
+                - unique
+                - not_null
+        - name: sales_salesorderdetail
+          description: Detalhes dos pedidos (FACT)
+          columns:
+            - name: salesorderid
+              description: id do pedido
+              tests:
+                - not_null
+        - name: sales_salesorderheader
+          description: Descrição dos pedidos (FACT)
+          columns:
+            - name: salesorderid
+              description: id do pedido
+              tests:
+                - unique
+                - not_null
+        - name: sales_salesorderheadersalesreason
+          description: Cruzamento de razões de compra dos clientes (FACT)
+          columns:
+            - name: salesorderid
+              description: id do pedido
+              tests:
+                - not_null
+        - name: sales_salesreason
+          description: Levantamento dos motivos/razões de compra (DIM)
+          columns:
+            - name: salesreasonid
+              description: id da razão/motivo de compra
+              tests:
+                - unique
+                - not_null    
