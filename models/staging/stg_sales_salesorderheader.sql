@@ -1,6 +1,6 @@
 with 
     source_data as (
-        select --selecionar primeiros as keys e em uma ordem que faça sentido
+        select 
             salesorderid
             , revisionnumber
             , orderdate
@@ -24,8 +24,6 @@ with
             , freight
             , totaldue
             , comment
-            --, rowguid
-            --, modifieddate
         from {{  source('erpadventure','sales_salesorderheader')  }}
     )
 

@@ -1,7 +1,14 @@
-with 
-    source_data as (
-        select 
-            productid
+{{ config(materialized='table') }}
+
+with
+    staging as (
+        select *
+        from {{ref('stg_production_product')}}
+    )
+    , transformed as (
+        select
+            row_number() over (order by productid) as productid_sk
+            , productid
             , name
             , productnumber
             , makeflag
@@ -24,7 +31,7 @@ with
             , sellstartdate
             , sellenddate
             , discontinueddate
-        from {{  source('erpadventure','production_product')  }}
+        from staging
     )
 
-    select * from source_data
+    select * from transformed

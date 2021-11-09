@@ -1,9 +1,8 @@
 with 
     source_data as (
-        select --selecionar primeiros as keys e em uma ordem que faça sentido
+        select 
             salesorderid
             , salesreasonid
-            --, modifieddate
         from {{  source('erpadventure','sales_salesorderheadersalesreason')  }}
     )
 
