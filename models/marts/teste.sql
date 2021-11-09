@@ -54,15 +54,12 @@ with
             , sellenddate
             , discontinueddate
         from staging
-        left join sales_salesorderdetail_with_fk
-        on transformed.productid_fk = sales_salesorderdetail_with_fk.productid_sk 
     )
 
-    , transformed1 as (
-        select *
-        from transformed
+    , tabela as (
+        select * from transformed
         left join sales_salesorderdetail_with_fk
-        on transformed1.productid_sk = sales_salesorderdetail_with_fk.productid_fk 
+        on tabela.productid_sk = sales_salesorderdetail_with_fk.productid_fk 
     )
 
-    select * from transformed1
+    select * from tabela
