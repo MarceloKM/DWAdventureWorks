@@ -31,11 +31,6 @@ with
         from {{  ref('dim_person_stateprovince')  }}
     )  
 
-    , fact_sales_salesorderheadersalesreason as (
-        select *
-        from {{  ref('fact_sales_salesorderheadersalesreason')  }}
-    )
-
     , person_countryregion_with_sk as (
         select
             countryregioncode_sk
@@ -71,7 +66,6 @@ with
             , sales_salesorderheader.freight
             , sales_salesorderheader.totaldue
             , sales_salesorderheader.comment
-            , fact_sales_salesorderheadersalesreason.salesreasonid_fk
         from {{  ref('stg_sales_salesorderheader')  }} sales_salesorderheader
         left join sales_customer_with_sk
         on sales_salesorderheader.customerid = sales_customer_with_sk.customerid
@@ -83,8 +77,6 @@ with
         on person_address_with_sk.stateprovinceid = person_stateprovince_with_sk.stateprovinceid
         left join person_countryregion_with_sk
         on person_stateprovince_with_sk.countryregioncode = person_countryregion_with_sk.countryregioncode
-        left join fact_sales_salesorderheadersalesreason
-        on sales_salesorderheader.salesorderid = fact_sales_salesorderheadersalesreason.salesorderid
     )
 
     select * from sales_salesorderheader_with_fk
